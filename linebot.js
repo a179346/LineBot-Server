@@ -6,14 +6,18 @@ const config = {
 };
 const bot = linebot(config);
 const botName = process.env.BOT_NAME;
+const service = require('./service');
 module.exports = bot;
 
 bot.on('message', async function (event) {
   try {
     if (event.type === 'message' && event.message && event.message.text) {
-      const message = event.message.text;
+      const message = event.message.text.trim();
       if (message === botName) {
         await event.reply('What trouble you bring now?');
+      } else if (message.indexOf(botName) === 0) {
+        const command = parseCommand(message);
+        await service.handleCommand(command, event);
       }
     }
   } catch (error) {
@@ -21,6 +25,7 @@ bot.on('message', async function (event) {
     await event.reply('Unknown Error  (x_x)');
   }
 });
+
 // event
 // {
 //   type: 'message',
@@ -42,3 +47,11 @@ bot.on('message', async function (event) {
 //   },
 //   reply: [Function]
 // }
+
+const symbols = [ '!', ',', ':', '！', '，', '：' ];
+function parseCommand (message) {
+  let command = message.replace(botName, '').trim();
+  if (symbols.includes(command.charAt(0)))
+    command = command.substring(1);
+  return command.trim();
+}
