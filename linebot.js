@@ -13,12 +13,13 @@ bot.on('message', async function (event) {
   try {
     if (event.type === 'message' && event.message && event.message.text) {
       const message = event.message.text.trim();
-      if (message === botName) {
+      if (message === botName)
         await event.reply('What trouble you bring now?');
-      } else if (message.indexOf(botName) === 0) {
+      else if (message.indexOf(botName) === 0) {
         const command = parseCommand(message);
         await service.handleCommand(command, event);
-      }
+      } else if (message.includes(botName))
+        await event.reply('Huh?');
     }
   } catch (error) {
     console.log(error);
