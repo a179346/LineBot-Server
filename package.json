@@ -1,0 +1,28 @@
+{
+  "name": "linebot-server",
+  "version": "1.0.0",
+  "description": "line bot server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a179346/LineBot-Server.git"
+  },
+  "keywords": [
+    "linebot",
+    "node",
+    "nodejs"
+  ],
+  "author": "a179346",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a179346/LineBot-Server/issues"
+  },
+  "homepage": "https://github.com/a179346/LineBot-Server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "linebot": "^1.6.0"
+  }
+}
